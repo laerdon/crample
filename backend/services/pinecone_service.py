@@ -24,10 +24,6 @@ def embed_chunks_and_upload_to_pinecone(chunks, index_name):
     # the EMBEDDING_DIMENSION is based on what the
     # OpenAI embedding model outputs
     
-    pinecone.create_index(name=index_name,
-                          dimension=EMBEDDING_DIMENSION,
-                            metric='cosine',
-                            spec=ServerlessSpec.asdict())
     index = pinecone.Index(index_name)
     # embed each chunk and aggregate these embeddings
     embeddings_with_ids = []
