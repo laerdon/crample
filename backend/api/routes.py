@@ -5,6 +5,18 @@ from backend.utils.helper_functions import chunk_text, build_prompt
 
 PINECONE_INDEX_NAME = 'crample'
 
+@api_blueprint.route('/dirty-shortcut', methods=['POST'])
+def dirty_shortcut(userInput):
+    prompt = """You generate study plans. You will receive information from a user: what their test is on, when it is, how long they would like to study daily.
+    You may or may not receive this information from a user: an outline of topics their exam will cover, and examples of practice problems.
+    You will produce two pieces of text. PART 1: Produce a study plan outlining which topics will be covered.
+    Reference practice problems which you have generated in part 2.
+    PART 2: Produce a worksheet of practice problems based on the input that you have been provided.
+    Do not produce any extraneous text besides these two items. Here is the user-provided information: """ + userInput
+    
+    answer = openai_service.get_llm_answer(prompt)
+    return answer
+
 @api_blueprint.route('/handle-query', methods=['POST'])
 def handle_query():
     question = request.json['question']
