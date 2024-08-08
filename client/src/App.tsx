@@ -7,25 +7,27 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { Slider } from '@nextui-org/react';
 
+
 function App() {
     const [input1, setInput1] = useState('');
     const [input2, setInput2] = useState('');
-    const [input3, setInput3] = useState(20);
+    const [input3, setInput3] = useState(2);
     const [studyPlan, setStudyPlan] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async () => {
-        const combinedString = `${input1}; ${input2}; ${input3}`;
-        console.log('Making API call with:', combinedString);
+        const userInput = `${input1}; ${input2}; ${input3} hours`;
+        console.log('Making API call with:', userInput);
         
         setIsLoading(true);
         try {
         const response = await fetch('http://localhost:3000/dirty-shortcut', {
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "http://localhost:3000/dirty-shortcut"
             },
-            body: JSON.stringify({combinedString}),
+            body: JSON.stringify({userInput}),
         });
 
         if (!response.ok) {
