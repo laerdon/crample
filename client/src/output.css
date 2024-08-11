@@ -7,6 +7,17 @@
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
 
+/* my add, because markdown isn't being rendered */
+
+.w-half {
+    width: 50%
+}
+
+.markdown > * {
+    all: revert;
+    text-align: left;
+}
+
 *,
 ::before,
 ::after {
@@ -827,6 +838,10 @@ video {
 
 .mb-5 {
   margin-bottom: 1.25rem;
+}
+
+.mb-10 {
+    margin-bottom: 2.5rem;
 }
 
 .mb-px {
