@@ -12,10 +12,11 @@ def dirty_shortcut():
     userInput = request.json['userInput']
     prompt = """You generate study plans. You will receive information from a user: what their test is on, when it is, how long they would like to study daily.
     You may or may not receive this information from a user: an outline of topics their exam will cover, and examples of practice problems.
-    You will produce two pieces of text. PART 1: Produce a study plan outlining which topics will be covered.
+    Produce two pieces of text. PART 1: Produce a study plan outlining which topics will be covered.
     Reference practice problems which you have generated in part 2.
     PART 2: Produce a worksheet of practice problems based on the input that you have been provided.
-    Do not produce any extraneous text besides these two items. Here is the user-provided information: """ + userInput
+    Label the sections "## PART 1: Study Plan" and "## PART 2: Practice", and separate them with a markdown horizontal line.
+    Do not produce any extraneous text besides these two items. Return only markdown text. Here is the user-provided information: """ + userInput
     
     answer = openai_service.get_llm_answer(prompt)
     print(answer)

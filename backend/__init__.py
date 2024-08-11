@@ -9,9 +9,6 @@ def create_app():
     app = Flask(__name__)
     CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
-    if os.environ.get('FLASK_ENV') == 'development':
-        CORS(app)
-
     from backend.api.routes import api_blueprint
     app.register_blueprint(api_blueprint)
 
